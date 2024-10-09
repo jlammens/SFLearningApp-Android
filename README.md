@@ -46,7 +46,12 @@ For further information about implementing the MobilePush SDK, see the documenta
         MC_SENDER_ID="{replace with marketing cloud fcm sender id}"
         MC_MID="{replace with marketing cloud mid}"
         MC_SERVER_URL="{replace with marketing cloud server url}"
-        
+
+1. In the same file, replace the values for DC_APP_ID and DC_ENDPOINT. Find these values on the Mobile connector config page in Data Cloud setup.
+
+        DC_APP_ID="{replace with Data Cloud App (Source) ID}"
+        DC_ENDPOINT="{replace with Data Cloud Tenant-Specific Endpoint (starting with https://)}"
+
 1. To deploy the Learning App to your Android device, click **Run** in Android Studio.
 
 **Development Notes for Android SDK** 
