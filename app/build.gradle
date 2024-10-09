@@ -19,6 +19,8 @@ android {
         buildConfigField "String", "MC_SENDER_ID", MC_SENDER_ID
         buildConfigField "String", "MC_MID", MC_MID
         buildConfigField "String", "MC_SERVER_URL", MC_SERVER_URL
+        buildConfigField "String", "DC_ENDPOINT", DC_ENDPOINT
+        buildConfigField "String", "DC_APP_ID", DC_APP_ID
     }
 
     buildTypes {
@@ -52,6 +54,8 @@ android {
 }
 
 dependencies {
+    implementation 'com.salesforce.marketingcloud:cdp:2.0.3'
+    implementation 'com.salesforce.marketingcloud:sfmcsdk:1.0.2'
     implementation("com.salesforce.marketingcloud:marketingcloudsdk:$marketingcloudsdk_version")
 
     implementation 'com.google.android.gms:play-services-location:21.1.0'

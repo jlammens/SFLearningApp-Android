@@ -23,7 +23,8 @@
         <item name="colorAccent">@color/secondaryColor</item>
     </style>
 
-    <style name="TextAppearance.SectionHeading" parent="TextAppearance.MaterialComponents.Headline4"></style>
+    <style name="TextAppearance.MainHeading" parent="TextAppearance.MaterialComponents.Headline4"></style>
+    <style name="TextAppearance.SectionHeading" parent="TextAppearance.MaterialComponents.Headline5"></style>
 
     <style name="TextAppearance.DialogBody" parent="TextAppearance.MaterialComponents.Body1">
 

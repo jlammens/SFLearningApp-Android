@@ -22,6 +22,12 @@ allprojects {
         maven {
             url "https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/repository"
         }
+        maven {
+            url "https://salesforce-marketingcloud.github.io/mobile-sdk-cdp-android/repository"
+        }
+        maven {
+            url "https://salesforce-marketingcloud.github.io/mobile-sdk-cdp-android/repository"
+        }
     }
 }
 

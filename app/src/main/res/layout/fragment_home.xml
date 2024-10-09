@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:visibility="visible"
+    tools:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/root"
@@ -10,13 +13,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp">
 
+        <TextView
+            android:id="@+id/textview_mp"
+            style="@style/TextAppearance.MainHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MobilePush"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <Button
             android:id="@+id/button_open_documentation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Open SDK Documentation"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/textview_mp" />
 
         <TextView
             android:id="@+id/textview_registration"
@@ -39,9 +51,10 @@
             android:id="@+id/button_show_registration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="Show Registration"
-            app:layout_constraintStart_toStartOf="@id/textview_registration"
-            app:layout_constraintTop_toBottomOf="@id/button_set_registration" />
+            app:layout_constraintStart_toEndOf="@id/button_set_registration"
+            app:layout_constraintTop_toTopOf="@id/button_set_registration" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/registration_barrier"
@@ -104,13 +117,12 @@
             android:id="@+id/textView7"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="ET Analytics"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_runtime_toggles"
-            />
+            app:layout_constraintTop_toBottomOf="@id/textview_runtime_toggles" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_et_analytics"
@@ -119,20 +131,18 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView7"
-            />
+            app:layout_constraintTop_toTopOf="@+id/textView7" />
 
         <TextView
             android:id="@+id/textView8"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Inbox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView9"
-            />
+            app:layout_constraintTop_toBottomOf="@id/textView9" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_inbox"
@@ -141,20 +151,18 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView8"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView8"
-            />
+            app:layout_constraintTop_toTopOf="@+id/textView8" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Pi Analytics"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textView7"
-            />
+            app:layout_constraintTop_toBottomOf="@id/textView7" />
 
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switch_pi_analytics"
@@ -163,8 +171,25 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/textView9"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/textView9"
-            />
+            app:layout_constraintTop_toTopOf="@+id/textView9" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="377dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textview_cdp"
+            style="@style/TextAppearance.MainHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Data Cloud"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/divider" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

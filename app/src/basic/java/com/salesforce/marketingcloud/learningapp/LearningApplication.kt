@@ -26,11 +26,12 @@
 package com.salesforce.marketingcloud.learningapp
 
 import com.salesforce.marketingcloud.MarketingCloudConfig
+import com.salesforce.marketingcloud.cdp.CdpConfig
 import com.salesforce.marketingcloud.notifications.NotificationCustomizationOptions
 
 class LearningApplication : BaseLearningApplication() {
 
-    override val configBuilder: MarketingCloudConfig.Builder
+    override val configBuilderMp: MarketingCloudConfig.Builder
         get() = MarketingCloudConfig.builder().apply {
             setApplicationId(BuildConfig.MC_APP_ID)
             setAccessToken(BuildConfig.MC_ACCESS_TOKEN)
@@ -45,4 +46,9 @@ class LearningApplication : BaseLearningApplication() {
             setProximityEnabled(true)
             setUrlHandler(this@LearningApplication)
         }
+    override val configBuilderCdp: CdpConfig.Builder
+        get() = CdpConfig.Builder(this, BuildConfig.DC_APP_ID, BuildConfig.DC_ENDPOINT)
+            .trackLifecycle(true)
+            .trackScreens(true)
+            .sessionTimeout(600)
 }

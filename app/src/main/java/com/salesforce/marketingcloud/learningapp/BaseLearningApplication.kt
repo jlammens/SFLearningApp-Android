@@ -37,6 +37,11 @@ import com.salesforce.marketingcloud.MCLogListener
 import com.salesforce.marketingcloud.MarketingCloudConfig
 import com.salesforce.marketingcloud.MarketingCloudSdk
 import com.salesforce.marketingcloud.UrlHandler
+import com.salesforce.marketingcloud.cdp.CdpConfig
+import com.salesforce.marketingcloud.cdp.CdpSdk
+import com.salesforce.marketingcloud.cdp.consent.Consent
+import com.salesforce.marketingcloud.cdp.events.Event
+import com.salesforce.marketingcloud.events.EventManager
 import com.salesforce.marketingcloud.messages.iam.InAppMessage
 import com.salesforce.marketingcloud.messages.iam.InAppMessageManager
 import com.salesforce.marketingcloud.sfmcsdk.InitializationStatus
@@ -45,11 +50,13 @@ import com.salesforce.marketingcloud.sfmcsdk.SFMCSdkModuleConfig
 import com.salesforce.marketingcloud.sfmcsdk.components.logging.LogLevel
 import com.salesforce.marketingcloud.sfmcsdk.components.logging.LogListener
 
+
 const val LOG_TAG = "~#MCLearningApp"
 
 abstract class BaseLearningApplication : Application(), UrlHandler {
 
-    internal abstract val configBuilder: MarketingCloudConfig.Builder
+    internal abstract val configBuilderMp: MarketingCloudConfig.Builder
+    internal abstract val configBuilderCdp: CdpConfig.Builder
 
     override fun onCreate() {
         super.onCreate()
@@ -59,6 +66,7 @@ abstract class BaseLearningApplication : Application(), UrlHandler {
             SFMCSdk.setLogging(LogLevel.DEBUG, LogListener.AndroidLogger())
             MarketingCloudSdk.setLogLevel(MCLogListener.VERBOSE)
             MarketingCloudSdk.setLogListener(MCLogListener.AndroidLogListener())
+            CdpSdk.logLevel(LogLevel.DEBUG, LogListener.AndroidLogger());
             SFMCSdk.requestSdk { sdk ->
                 sdk.mp { push ->
                     push.registrationManager.registerForRegistrationEvents {
@@ -73,7 +81,8 @@ abstract class BaseLearningApplication : Application(), UrlHandler {
         // functionality when the app is launched from a background service (receiving push message,
         // entering a geofence, ...)
         SFMCSdk.configure(applicationContext as Application, SFMCSdkModuleConfig.build {
-            pushModuleConfig = configBuilder.build(applicationContext)
+            pushModuleConfig = configBuilderMp.build(applicationContext)
+            cdpModuleConfig = configBuilderCdp.build()
         }) { initStatus ->
             when (initStatus.status) {
                 InitializationStatus.SUCCESS -> {
@@ -128,6 +137,14 @@ abstract class BaseLearningApplication : Application(), UrlHandler {
                         }
                     })
                 }
+
+                // force enable push
+                it.pushMessageManager.enablePush()
+            }
+
+            sdk.cdp {
+                Log.v(LOG_TAG, "Forcing consent value to OPT-IN.")
+                it.consent = Consent.OPT_IN
             }
         }
     }
